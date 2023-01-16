@@ -14,18 +14,18 @@ if (any(simdata$id != match(simdata$id, uid))) stop("id is not sequential")
 stan.list <- list(id = simdata$id, y= simdata$y, 
                outcome= as.numeric(simdata$outcome),
                age = simdata$age,
-               x = cbind(simdata$male, simdata$apoe, simdata$apoemis,
+               x = cbind(simdata$male, simdata$apoepos, simdata$apoemiss,
                          simdata$educ-16),
                adrc = simdata$adrc,
                N = nrow(simdata),  # number of obs
                M = length(uid),    # number of unique subjects
-               P = 3,              # number of covariates
+               P = 4,              # number of covariates
                dft = 10            # df for the t distribution
 )
 
 # Set up initial values.  This should not be strictly necessary, but we 
 #  get a shorter burn in with rational choices for the shape
-set.seed(39392)  # for reproducable initial values
+set.seed(39392)  # for reproducible initial values
 init.fun <- function(chain) {
     target <- cbind(c(.4, .05, .4, 7.5, .1), # amyloid
                     c(.3, .05, .4, 8.5, .2), # tau
