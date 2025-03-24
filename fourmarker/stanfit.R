@@ -14,7 +14,7 @@ if (any(simdata$id != match(simdata$id, uid))) stop("id is not sequential")
 stan.list <- list(id = simdata$id, y= simdata$y, 
                outcome= as.numeric(simdata$outcome),
                age = simdata$age,
-               x = cbind(simdata$male, simdata$apoe, simdata$apoemis,
+               x = cbind(simdata$male, simdata$apoe, simdata$apoemiss,
                          simdata$educ-16),
                adrc = simdata$adrc,
                N = nrow(simdata),  # number of obs
