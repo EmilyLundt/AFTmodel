@@ -46,7 +46,7 @@ fit4<- stan("aft4.stan",
             cores = nchains,
             pars = c("alpha", "B", "beta", "sigma", "Omega", "atau", 
                      "adrc_shift"),
-            seed = 39392
+            seed = 39392 ## for reproducible initials unspecified by init.list
             )
 
 # save(fit4, "fit4save.rda")
