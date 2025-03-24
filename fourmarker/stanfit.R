@@ -19,7 +19,7 @@ stan.list <- list(id = simdata$id, y= simdata$y,
                adrc = simdata$adrc,
                N = nrow(simdata),  # number of obs
                M = length(uid),    # number of unique subjects
-               P = 3,              # number of covariates
+               P = 4,              # number of covariates
                dft = 10            # df for the t distribution
 )
 
@@ -45,7 +45,8 @@ fit4<- stan("aft4.stan",
             iter = 10000,
             cores = nchains,
             pars = c("alpha", "B", "beta", "sigma", "Omega", "atau", 
-                     "adrc_shift")
+                     "adrc_shift"),
+            seed = 39392
             )
 
 # save(fit4, "fit4save.rda")
