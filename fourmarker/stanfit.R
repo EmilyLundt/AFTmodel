@@ -25,7 +25,7 @@ stan.list <- list(id = simdata$id, y= simdata$y,
 
 # Set up initial values.  This should not be strictly necessary, but we 
 #  get a shorter burn in with rational choices for the shape
-set.seed(39392)  # for reproducable initial values
+set.seed(39392)  # for reproducible initial values
 init.fun <- function(chain) {
     target <- cbind(c(.4, .05, .4, 7.5, .1), # amyloid
                     c(.3, .05, .4, 8.5, .2), # tau
@@ -45,7 +45,8 @@ fit4<- stan("aft4.stan",
             iter = 10000,
             cores = nchains,
             pars = c("alpha", "B", "beta", "sigma", "Omega", "atau", 
-                     "adrc_shift")
+                     "adrc_shift"),
+            seed = 39392 ## for reproducible initials unspecified by init.list
             )
 
 # save(fit4, "fit4save.rda")
